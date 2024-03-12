@@ -1,0 +1,5 @@
+numpy==1.24.3
+Flask==2.2.2
+werkzeug==2.2.2
+Flask-Cors==4.0.0
+pandas==2.2.0
