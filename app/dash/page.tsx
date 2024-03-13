@@ -40,7 +40,7 @@ export default function Dash() {
       console.error("error fetching notes:", error);
     }
   };
-
+  //
   // Function to fetch data from Firebase database
   // based on time stamps.
   // note title and graph data (template only)

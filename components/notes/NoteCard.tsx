@@ -52,7 +52,7 @@ const NoteCard: React.FC<NoteCardProps> = ({
       console.error("Error saving note with session ID:", error);
     }
   };
-
+  //
   return (
     <div className="mb-20 mt-10 flex flex-col">
       <Card>

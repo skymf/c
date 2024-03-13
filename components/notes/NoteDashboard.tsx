@@ -66,7 +66,7 @@ const NoteDashboard: React.FC = () => {
       console.error("Error updating note:", error);
     }
   };
-
+  //
   return (
     <div className="mt-12 flex flex-col">
       <h1 className="text-2xl font-bold">Note Dashboard</h1>

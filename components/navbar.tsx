@@ -67,7 +67,6 @@ export default function NavBar() {
     </header>
   );
 }
-
 // <header className="grow">
 //   <div className="sticky z-50 h-16 ">
 //     <div className="h-auto border-b border-red-200">
