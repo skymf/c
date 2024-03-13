@@ -52,7 +52,9 @@ export default function Dash() {
         <Card className="">
           <h1 className="text-2xl font-semibold">{noteTitle}</h1>
           <div className="flex flex-col gap-3">
-            <p>this is a template graph, full note displayed later</p>
+            <p>
+              this is a template graph, full notes are being displayed later
+            </p>
           </div>
         </Card>
 

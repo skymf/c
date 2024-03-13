@@ -26,7 +26,7 @@ export default function NavBar() {
           </Link>
 
           <Link href="/graphs" className="h-2 hover:underline">
-            check your recent graphs
+            check the recent graphs
           </Link>
           <button
             className="group mt-3 flex h-8 w-full max-w-xs items-center rounded-full border border-[#F3F1EB] px-3 text-sm text-[#F3F1EB] outline-none transition hover:scale-110 hover:bg-[#F3F1EB] hover:text-[#2A2A2B] focus:scale-110 active:scale-105 sm:h-10 sm:max-w-max sm:text-base"

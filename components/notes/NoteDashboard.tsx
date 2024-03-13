@@ -71,7 +71,7 @@ const NoteDashboard: React.FC = () => {
     <div className="mt-12 flex flex-col">
       <h1 className="text-2xl font-bold">Note Dashboard</h1>
       <NoteForm onAddNote={handleAddNote} sessionId={sessionID} />
-      {/* noteform needs sessionId prop */}
+      {/* noteform need sessionId prop */}
       <div className="">
         {notes.map((note) => (
           <NoteCard
