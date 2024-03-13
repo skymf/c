@@ -54,7 +54,7 @@ const NoteCard: React.FC<NoteCardProps> = ({
   };
 
   return (
-    <div className="mb-10 mt-12 flex flex-col">
+    <div className="mb-20 mt-10 flex flex-col">
       <Card>
         <h3 className="text-xl font-semibold">{note.title}</h3>
         <p className="text-md font-medium">{note.content}</p>
