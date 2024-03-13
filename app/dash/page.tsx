@@ -42,7 +42,7 @@ export default function Dash() {
   };
 
   // Function to fetch data from Firebase database
-  // based on time stamps
+  // based on time stamps.
   // note title and graph data (template only)
   return (
     <section className="mb-28 px-12 ">

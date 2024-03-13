@@ -37,7 +37,7 @@ export default function NavBar() {
           <Dialog open={isOpen} onClose={(val) => setIsOpen(val)} static={true}>
             <DialogPanel>
               <h3 className="text-tremor-content-strong dark:text-dark-tremor-content-strong mb-3 text-lg font-semibold">
-                display your youtube video stats!
+                display your youtube video stats
               </h3>
               <CombinedGraphComponent />
               <button
