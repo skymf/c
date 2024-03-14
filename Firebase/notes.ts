@@ -17,8 +17,8 @@ export const getNotes = async () => {
   return snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
 };
 
-export const addNote = async (note: any, sessionID: string) => {
-  await addDoc(collection(db, "notes"), { ...note, sessionID });
+export const addNote = async (note: any) => {
+  await addDoc(collection(db, "notes"), { ...note });
 };
 
 export const updateNote = async (note: any) => {

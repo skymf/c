@@ -6,9 +6,10 @@ import { TextInput } from "@tremor/react";
 import { AuthErrorCodes } from "firebase/auth";
 
 export default function SignIn() {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const [email, setEmail] = React.useState<string>("");
+  const [password, setPassword] = React.useState<string>("");
   const router = useRouter();
+  const [error, setError] = React.useState(false);
 
   const handleForm = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -16,6 +17,7 @@ export default function SignIn() {
     const { userCredential, error } = await signIn(email, password);
 
     if (error) {
+      setError(true);
       return console.log(error);
     }
     console.log(userCredential);
@@ -45,6 +47,7 @@ export default function SignIn() {
             required
             name="password"
             id="password"
+            error={error}
             errorMessage={AuthErrorCodes.INVALID_PASSWORD}
           />
           <p className="pt-2 text-xs">

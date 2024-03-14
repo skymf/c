@@ -40,7 +40,7 @@ const NoteDashboard: React.FC = () => {
     sessionId: string;
   }) => {
     try {
-      await addNote(newNote, sessionID);
+      await addNote(newNote);
       fetchNotes();
     } catch (error) {
       console.error("Error adding note:", error);

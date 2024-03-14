@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { TextInput, Textarea } from "@tremor/react";
-// import sessionID from "../../components/Graphs"; // Import sessionID from Graphs.tsx
 
 interface NoteFormProps {
   onAddNote: (newNote: {
