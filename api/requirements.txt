@@ -3,3 +3,4 @@ Flask==2.2.2
 werkzeug==2.2.2
 Flask-Cors==4.0.0
 pandas==2.2.0
+yt_dlp==2023.3.12

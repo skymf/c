@@ -48,7 +48,7 @@ export default function SignIn() {
             name="password"
             id="password"
             error={error}
-            errorMessage={AuthErrorCodes.INVALID_PASSWORD}
+            errorMessage={"invalid email or password"}
           />
           <p className="pt-2 text-xs">
             Forgot your password?{" "}
