@@ -54,7 +54,7 @@ export const useSessionID = () => {
         error.response?.data ?? error.message,
       );
       toast.error(
-        "error during uploading file / read / firebase / convert / upload",
+        "error during uploading file / read / firebase / convert / upload. Please refresh the page",
       );
     }
   };

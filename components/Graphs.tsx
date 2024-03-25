@@ -64,7 +64,7 @@ const CombinedGraphComponent: React.FC = () => {
     } catch (error: any) {
       console.error("Error fetching graph data:", error);
       toast.error(
-        "Error fetching graph data. Please check the console for details.",
+        "error fetching graph data. Please check the console for details.",
       );
     }
   };
