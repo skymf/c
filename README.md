@@ -1,6 +1,6 @@
 <p align="center">
   <img src=
-  "/public/123.jpg" height="250">
+  "/public/hi.jpg" height="250">
     <h1 align="center">a website</h1>
 </p>
 
@@ -23,7 +23,9 @@ $ gsutil cors set cors.json gs://website-client-1adc5.appspot.com
 ```
 
 ## hi and bye
+
 oh yeah used packages
+
 <li> nextjs
 <li> flask
 <li> axios
