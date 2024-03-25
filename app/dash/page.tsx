@@ -80,6 +80,7 @@ export default function Dash() {
             onDelete={fetchNotes}
             onEdit={fetchNotes}
             sessionId="1234"
+            timestamp={1234}
           />
         ))}
       </div>

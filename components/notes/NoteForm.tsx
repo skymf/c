@@ -36,7 +36,7 @@ const NoteForm: React.FC<NoteFormProps> = ({ onAddNote }) => {
   const fetchSessionIds = async () => {
     try {
       const querySnapshot = await getDocs(collection(db, "sessions"));
-      const sessionIds = querySnapshot.docs.map((doc) => doc.id);
+      const sessionIds = querySnapshot.docs.map((doc) => doc.data().sessionID);
       console.log("Session IDs:", sessionIds);
       if (sessionIds.length > 0) {
         setSessionId(sessionIds[0]);

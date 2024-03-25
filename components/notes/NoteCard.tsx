@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getDownloadURL, ref, getStorage } from "firebase/storage";
-import { Card } from "@tremor/react";
+import { Card, LineChart } from "@tremor/react";
 import { initializeApp } from "firebase/app";
 import { Timestamp } from "firebase/firestore";
 import { getFirestore, collection, getDocs } from "firebase/firestore";
@@ -51,7 +51,7 @@ const NoteCard: React.FC<NoteCardProps> = ({ note, onDelete, onEdit }) => {
   const fetchSessionIds = async () => {
     try {
       const querySnapshot = await getDocs(collection(db, "sessions"));
-      const sessionIds = querySnapshot.docs.map((doc) => doc.id);
+      const sessionIds = querySnapshot.docs.map((doc) => doc.data().sessionID);
       console.log("Session IDs:", sessionIds);
       if (sessionIds.length > 0) {
         setSessionID(sessionIds[0]);
@@ -65,7 +65,7 @@ const NoteCard: React.FC<NoteCardProps> = ({ note, onDelete, onEdit }) => {
     try {
       if (!sessionId) return;
       const storage = getStorage();
-      const storageRef = ref(storage, `graphs/${sessionId}.json`);
+      const storageRef = ref(storage, `graphs/Organic.csv_${sessionID}.json`);
       const url = await getDownloadURL(storageRef);
       setGraphUrl(url);
     } catch (error) {
@@ -88,7 +88,7 @@ const NoteCard: React.FC<NoteCardProps> = ({ note, onDelete, onEdit }) => {
           Added:{" "}
           {note.timestamp
             ? new Date(note.timestamp).toLocaleString()
-            : "Unknown"}
+            : Date.now()}
         </p>
         <p>Session ID: {sessionID || "No session ID available"}</p>
         <div className="flex flex-row gap-3">
