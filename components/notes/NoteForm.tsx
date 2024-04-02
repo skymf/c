@@ -30,16 +30,29 @@ const NoteForm: React.FC<NoteFormProps> = ({ onAddNote }) => {
   const [sessionId, setSessionId] = useState<string | null>(null);
 
   useEffect(() => {
-    fetchSessionIds();
+    fetchSessionIds(30000);
   }, []);
 
-  const fetchSessionIds = async () => {
+  const fetchSessionIds = async (delayMs: number) => {
     try {
+      await new Promise((resolve) => setTimeout(resolve, delayMs));
       const querySnapshot = await getDocs(collection(db, "sessions"));
-      const sessionIds = querySnapshot.docs.map((doc) => doc.data().sessionID);
-      console.log("Session IDs:", sessionIds);
-      if (sessionIds.length > 0) {
-        setSessionId(sessionIds[0]);
+      const sessionIds = querySnapshot.docs.map((doc) => {
+        return {
+          sessionID: doc.data().sessionID,
+          uploadedAt: doc.data().uploadedAt.toDate(),
+        };
+      });
+
+      sessionIds.sort((a, b) => b.uploadedAt - a.uploadedAt);
+
+      const latestSessionID =
+        sessionIds.length > 0 ? sessionIds[0].sessionID : null;
+
+      console.log("Latest session ID:", latestSessionID);
+
+      if (latestSessionID) {
+        setSessionId(latestSessionID);
       }
     } catch (error) {
       console.error("Error fetching session IDs:", error);
