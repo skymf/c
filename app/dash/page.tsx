@@ -79,7 +79,6 @@ export default function Dash() {
             note={note}
             onDelete={fetchNotes}
             onEdit={fetchNotes}
-            sessionId="1234"
             timestamp={1234}
           />
         ))}

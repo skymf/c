@@ -35,7 +35,7 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({
   return (
     <AuthContext.Provider value={{ user }}>
       {loading ? (
-        <div className="mb-24 p-12 text-3xl font-bold">Loading...</div>
+        <div className="text-4xl font-bold">Loading...</div>
       ) : (
         children
       )}
