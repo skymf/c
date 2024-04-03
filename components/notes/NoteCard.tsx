@@ -3,9 +3,7 @@ import { getDownloadURL, ref, getStorage } from "firebase/storage";
 import { Card, Dialog, DialogPanel, LineChart } from "@tremor/react";
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, getDocs } from "firebase/firestore";
-import Link from "next/link";
-import LocalTime from "@/components/time"; // Adjust the path as per your project structure
-import CombinedGraphComponent from "@/app/graphs/page";
+import LocalTime from "@/components/time";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
