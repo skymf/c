@@ -70,7 +70,7 @@ const NoteDashboard: React.FC = () => {
   return (
     <div className="mt-12 flex flex-col">
       <h1 className="text-2xl font-bold">Note Dashboard</h1>
-      <NoteForm onAddNote={handleAddNote} sessionId={sessionID} />
+      <NoteForm onAddNote={handleAddNote} />
       {/* noteform need sessionId prop */}
       <div className="">
         {notes.map((note) => (
@@ -79,7 +79,6 @@ const NoteDashboard: React.FC = () => {
             note={note}
             onDelete={handleDeleteNote}
             onEdit={handleEditNote}
-            sessionId={sessionID}
           />
         ))}
       </div>

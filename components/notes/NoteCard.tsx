@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { getDownloadURL, ref, getStorage } from "firebase/storage";
-import { Card } from "@tremor/react";
+import { Card, Dialog, DialogPanel, LineChart } from "@tremor/react";
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, getDocs } from "firebase/firestore";
 import Link from "next/link";
 import LocalTime from "@/components/time"; // Adjust the path as per your project structure
+import CombinedGraphComponent from "@/app/graphs/page";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -24,7 +25,6 @@ interface Note {
   title: string;
   content: string;
   sessionId: string;
-  timestamp: number;
 }
 
 interface NoteCardProps {
@@ -34,9 +34,11 @@ interface NoteCardProps {
 }
 
 const NoteCard: React.FC<NoteCardProps> = ({ note, onDelete, onEdit }) => {
-  const [graphUrl, setGraphUrl] = useState<string | null>(null);
+  const [graphUrl, setGraphUrl] = useState<any[]>([]);
   const [sessionID, setSessionID] = useState<string | null>(null);
   const [time, setTime] = useState<string | null>(null);
+  const [isOpen, setIsOpen] = React.useState(false);
+
   useEffect(() => {
     fetchSessionIds();
     fetchTime();
@@ -98,51 +100,74 @@ const NoteCard: React.FC<NoteCardProps> = ({ note, onDelete, onEdit }) => {
     }
   };
 
-  // const fetchTime = async () => {
-  //   try {
-  //     const querySnapshot = await getDocs(collection(db, "sessions"));
-  //     const times = querySnapshot.docs.map((doc) => doc.data().uploadedAt);
-  //     console.log("the time added is", times);
-  //     if (times.length > 0) {
-  //       setTime(times[0]);
-  //     }
-  //   } catch (error) {
-  //     console.error("Error fetching time: ", error);
-  //   }
-  // };
-
   const fetchGraphUrl = async (sessionId: string) => {
     try {
       if (!sessionId) return;
       const storage = getStorage();
-      const storageRef = ref(storage, `graphs/Organic.csv_${sessionID}.json`);
+      const storageRef = ref(storage, `Organic.csv_${sessionID}_graph.json`);
       const url = await getDownloadURL(storageRef);
-      setGraphUrl(url);
+      setGraphUrl([url]);
     } catch (error) {
       console.error("Error fetching graph URL:", error);
+      setGraphUrl([]);
     }
   };
 
   return (
-    <div className="mb-20 mt-10 flex flex-col gap-3">
+    <div className="mb-20 mt-20 flex flex-col gap-3">
       <Card>
-        <h3 className="text-xl font-semibold">{note.title}</h3>
+        <div className="flex flex-row justify-between">
+          <h3 className="text-xl font-semibold">{note.title}</h3>
+          <p className="text-sm text-tremor-content">
+            Last updated: {time || "No time available"}
+            {/* Added: <LocalTime date={note.timestamp} /> */}
+          </p>
+        </div>
         <p className="text-md mt-5 font-medium">{note.content}</p>
-        <p className="mt-5">
-          Link to graph:{" "}
-          <Link href="" className="hover:underline">
-            View Graph
-          </Link>
-        </p>
-        <p>
-          Last updated: {time || "No time available"}
-          {/* Added: <LocalTime date={note.timestamp} /> */}
-        </p>
-        <p className="mt-3 text-xs">
+        <p className="mt-3 text-xs text-tremor-content">
           Session ID:{" "}
           {`this session id is ${sessionID}` || "No session ID available"}
         </p>
+
         <div className="flex flex-row gap-3">
+          <button
+            className="group mt-3 flex h-8 w-full max-w-xs items-center rounded-full border border-[#F3F1EB] px-3 text-sm text-[#F3F1EB] outline-none transition hover:scale-110 hover:bg-[#F3F1EB] hover:text-[#2A2A2B] focus:scale-110 active:scale-105 sm:h-10 sm:max-w-max sm:text-base"
+            onClick={() => setIsOpen(true)}
+          >
+            show the current graph
+          </button>
+          <Dialog
+            open={isOpen}
+            onClose={() => setIsOpen(false)}
+            static={true}
+            className="z-[100]"
+          >
+            <DialogPanel className="max-w-sm">
+              <div className="flex flex-col px-6">
+                <h3 className="text-lg font-semibold text-white">
+                  {" "}
+                  hey, check the current graph{" "}
+                </h3>
+
+                <LineChart
+                  className="mt-6"
+                  data={graphUrl}
+                  index="Video position (%)"
+                  categories={["Absolute audience retention (%)"]}
+                  yAxisWidth={100}
+                  showAnimation={true}
+                  animationDuration={1750}
+                />
+              </div>
+              <button
+                className="group mt-3 flex h-8 w-full max-w-xs items-center rounded-full border border-[#F3F1EB] px-3 text-sm text-[#F3F1EB] outline-none transition hover:scale-110 hover:bg-[#F3F1EB] hover:text-[#2A2A2B] focus:scale-110 active:scale-105 sm:h-10 sm:max-w-max sm:text-base"
+                onClick={() => setIsOpen(false)}
+              >
+                Close
+              </button>
+            </DialogPanel>
+          </Dialog>
+
           <button
             type="submit"
             className="group mt-3 flex h-8 w-full max-w-xs items-center rounded-full border border-[#F3F1EB] px-3 text-sm text-[#F3F1EB] outline-none transition hover:scale-110 hover:bg-[#F3F1EB] hover:text-[#2A2A2B] focus:scale-110 active:scale-105 sm:h-10 sm:max-w-max sm:text-base"

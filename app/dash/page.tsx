@@ -79,7 +79,6 @@ export default function Dash() {
             note={note}
             onDelete={fetchNotes}
             onEdit={fetchNotes}
-            timestamp={1234}
           />
         ))}
       </div>

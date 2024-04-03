@@ -14,7 +14,7 @@ const LocalTime: React.FC<LocalTimeProps> = ({ date }) => {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, []); // Runs only once on component mount
+  }, []);
 
   useEffect(() => {
     if (typeof date === "number") {
