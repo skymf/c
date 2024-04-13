@@ -3,7 +3,6 @@ import { getDownloadURL, ref, getStorage } from "firebase/storage";
 import { Card, Dialog, DialogPanel, LineChart } from "@tremor/react";
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, getDocs } from "firebase/firestore";
-import LocalTime from "@/components/time";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
