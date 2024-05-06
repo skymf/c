@@ -1,6 +1,6 @@
 numpy==1.24.3
 distlib==0.3.8
-Werkzeug==2.2.2
+Werkzeug==3.0.3
 pandas==2.2.0
 yt_dlp==2024.3.10
 firebase-admin==6.4.0
